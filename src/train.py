@@ -15,6 +15,9 @@ DATA_PATH = PROJECT_ROOT / "data" / "raw" / "SMSSpamCollection"
 MODEL_PATH = PROJECT_ROOT / "models" / "final_spam_pipeline.pkl"
 
 def main():
+    if not DATA_PATH.exists():
+        raise FileNotFoundError(f"Dataset not found: {DATA_PATH}")
+
     df = pd.read_csv(
         DATA_PATH,
         sep="\t",
